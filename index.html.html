@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Chanaa — Princess Day</title>
+<style>
+:root{--pink:#ff75aa;--deep:#c43c78;--soft:#fff0f6;--cream:#fffafd;--gold:#e6b85c}
+*{box-sizing:border-box}
+body{margin:0;font-family:Georgia,'Times New Roman',serif;color:#74304f;background:linear-gradient(135deg,#fff1f7,#ffe0ed 55%,#fff8fb);min-height:100vh;overflow-x:hidden}
+main{width:min(900px,92%);margin:auto;padding:28px 0 55px;text-align:center}
+.card{background:#ffffffd9;border:1px solid #ffd0e2;border-radius:28px;padding:clamp(22px,5vw,48px);box-shadow:0 18px 55px #c43c781c;margin:18px 0}
+.crown{font-size:54px;filter:drop-shadow(0 5px 8px #e8a6c2)}
+h1{font-size:clamp(2.3rem,7vw,4.5rem);color:#c43c78;margin:10px 0}
+h2{color:#c43c78;font-size:clamp(1.6rem,4vw,2.2rem)}
+p{font-size:1.12rem;line-height:1.75}
+.sub{color:#a85a7c}
+button{border:0;border-radius:999px;background:linear-gradient(100deg,#f66da5,#d94b8b);color:white;padding:14px 24px;font-size:1rem;cursor:pointer;box-shadow:0 7px 18px #d94b8b35;margin:8px;transition:.2s}
+button:hover{transform:translateY(-2px)}
+.gift{font-size:76px;cursor:pointer;display:inline-block;transition:.3s}
+.gift:hover{transform:scale(1.12) rotate(-5deg)}
+.hidden{display:none}
+.letter{background:#fff8fb;border:1px dashed #ed9cbd;border-radius:18px;padding:22px;text-align:left;line-height:1.9}
+.reasons{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-top:20px}
+.reason{background:#fff1f7;border:1px solid #ffd2e4;border-radius:17px;padding:18px}
+.rose{font-size:40px;display:inline-block;animation:sway 2s ease-in-out infinite}
+@keyframes sway{50%{transform:rotate(12deg) scale(1.08)}}
+footer{color:#a85a7c;font-size:.9rem;padding:20px}
+.sparkle{position:fixed;pointer-events:none;animation:float 5s linear infinite;opacity:.7}
+@keyframes float{from{transform:translateY(105vh) rotate(0);opacity:0}15%{opacity:.8}to{transform:translateY(-10vh) rotate(300deg);opacity:0}}
+#final{background:linear-gradient(135deg,#fff,#ffe5f0)}
+</style>
+</head>
+<body>
+<main>
+<section class="card">
+  <div class="crown">👑</div>
+  <p class="sub">A little surprise made just for you</p>
+  <h1>Happy Princess Day,<br>Chanaa! 🎀</h1>
+  <p>Today is your reminder that you deserve kindness, joy, lovely surprises, and all the little things that make you smile.</p>
+  <button onclick="show('surprises')">Open your surprise ✨</button>
+</section>
+
+<section id="surprises" class="card hidden">
+  <h2>Your royal surprise box 🎁</h2>
+  <p>Tap the gift to unwrap a little happiness.</p>
+  <div class="gift" role="button" tabindex="0" onclick="openGift()" onkeydown="if(event.key==='Enter')openGift()">🎁</div>
+  <p id="giftMessage" class="sub">A special surprise is waiting inside…</p>
+  <button onclick="show('letter')">Next: a little letter 💌</button>
+</section>
+
+<section id="letter" class="card hidden">
+  <h2>A letter for Chanaa 💌</h2>
+  <div class="letter">
+    Dear Chanaa,<br><br>
+    I hope your day is filled with sweet moments, happy memories, and reasons to smile. You make ordinary days feel a little more special, and I hope today reminds you how appreciated you are.<br><br>
+    Keep being wonderfully you. May your dreams sparkle, your heart feel light, and your days bring you the happiness you deserve.<br><br>
+    Happy Princess Day! 🌷<br>
+    With lots of care ❤️
+  </div>
+  <button onclick="show('roses')">A bouquet for you 🌹</button>
+</section>
+
+<section id="roses" class="card hidden">
+  <h2>Virtual roses, just for you</h2>
+  <div style="font-size:52px;letter-spacing:8px"><span class="rose">🌹</span><span class="rose">🌷</span><span class="rose">🌹</span></div>
+  <p>One flower for every little reason to smile. May your world always have colour, warmth, and kindness.</p>
+  <button onclick="show('reasons')">One more surprise 💗</button>
+</section>
+
+<section id="reasons" class="card hidden">
+  <h2>Little things that make you special ✨</h2>
+  <div class="reasons">
+    <div class="reason">🌸 Your unique way of being you</div>
+    <div class="reason">💖 The happiness you bring</div>
+    <div class="reason">⭐ Your dreams and ambitions</div>
+    <div class="reason">🦋 The little moments we remember</div>
+  </div>
+  <button onclick="show('final')">The final surprise 👑</button>
+</section>
+
+<section id="final" class="card hidden">
+  <div class="crown">👑</div>
+  <h2>To my favourite princess, Chanaa</h2>
+  <p>Never forget: you deserve to feel valued, respected, and celebrated—not just today, but every day.</p>
+  <h1 style="font-size:clamp(2rem,6vw,3.4rem)">Happy Princess Day! 💗</h1>
+  <p>Made with care, especially for you 🎀</p>
+  <button onclick="location.reload()">Replay the surprise ↻</button>
+</section>
+<footer>🌷 A tiny pink corner of the internet, made for Chanaa 🌷</footer>
+</main>
+<script>
+function show(id){
+  document.querySelectorAll('main section').forEach(s=>s.classList.add('hidden'));
+  document.getElementById(id).classList.remove('hidden');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+let opened=false;
+function openGift(){
+  const el=document.getElementById('giftMessage');
+  if(!opened){el.textContent='Surprise! A whole bundle of smiles, hugs in spirit, flowers, and good wishes just for you! 💝';opened=true;}
+  else{el.textContent='Sending you another sprinkle of happiness, Chanaa! ✨';}
+}
+for(let i=0;i<18;i++){
+ const s=document.createElement('div');s.className='sparkle';s.textContent=['♡','✧','🎀','✿'][i%4];
+ s.style.left=(Math.random()*100)+'vw';s.style.animationDelay=(Math.random()*5)+'s';s.style.fontSize=(14+Math.random()*18)+'px';document.body.appendChild(s);
+}
+</script>
+</body>
+</html>
